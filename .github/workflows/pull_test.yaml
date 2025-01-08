@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
+        uses: aws-actions/configure-aws-credentials@main
         with:
           role-to-assume: arn:aws:iam::570774169190:role/Configure-aws-credentials-kellertk-Role-1VNIWSPQGBBTG
           aws-region: us-west-2
