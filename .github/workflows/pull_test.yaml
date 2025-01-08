@@ -1,0 +1,25 @@
+name: OIDC whoami
+on: pull_request
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          role-to-assume: arn:aws:iam::570774169190:role/Configure-aws-credentials-kellertk-Role-1VNIWSPQGBBTG
+          aws-region: us-west-2
+      - name: Print info
+        run: |
+          echo "Key: $AWS_ACCESS_KEY_ID"
+          echo "Token: $AWS_SESSION_TOKEN"
+          echo "Region: $AWS_REGION"
+          echo "Role: arn:aws:iam::570774169190:role/Configure-aws-credentials-kellertk-Role-1VNIWSPQGBBTG"
+      - name: Who AM I?
+        run: |
+          aws sts get-caller-identity
